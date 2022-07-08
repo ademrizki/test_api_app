@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:test_api_app/provider/sign_in_provider.dart';
 import 'package:test_api_app/provider/user_provider.dart';
-import 'package:test_api_app/views/screens/home_screen.dart';
+import 'package:test_api_app/views/screens/sign_in_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,13 +18,17 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => UserProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => SignInProvider(),
+        ),
       ],
       child: MaterialApp(
         title: 'MVVM app',
         theme: ThemeData(
+          useMaterial3: true,
           primarySwatch: Colors.blue,
         ),
-        home: const HomeScreen(),
+        home: const SignInScreen(),
       ),
     );
   }

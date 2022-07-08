@@ -35,12 +35,15 @@ class _UserDetailScreenState extends State<UserDetailScreen> {
       body: BlocBuilder<UserDetailBloc, UserDetailState>(
         builder: (context, state) {
           if (state is LoadingState) {
-            return const CupertinoActivityIndicator();
+            return const Center(
+              child: CupertinoActivityIndicator(),
+            );
           } else if (state is ErrorState) {
             return Text(state.errorMessage);
           } else if (state is SuccessState) {
             return Center(
               child: Column(
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   /// Image
                   Image.network(state.userDetail.data!.avatar!),

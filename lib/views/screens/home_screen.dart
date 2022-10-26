@@ -32,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('List of User'),
+        title: const Text('Life is Worthless'),
       ),
       body: Consumer<UserProvider>(
         builder: (context, provider, _) {

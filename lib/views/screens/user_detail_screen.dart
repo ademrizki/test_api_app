@@ -18,12 +18,20 @@ class _UserDetailScreenState extends State<UserDetailScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(
-      Duration.zero,
-      () {
-        context.read<UserDetailBloc>().add(GetUserDetail(widget.id));
-      },
-    );
+    context.read<UserDetailBloc>().add(GetUserDetail(widget.id));
+    context.read<UserDetailBloc>().stream.listen((state) {});
+  }
+
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+  }
+
+  @override
+  void didUpdateWidget(covariant UserDetailScreen oldWidget) {
+    // TODO: implement didUpdateWidget
+    super.didUpdateWidget(oldWidget);
   }
 
   @override
@@ -60,5 +68,11 @@ class _UserDetailScreenState extends State<UserDetailScreen> {
         },
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    context.read<UserDetailBloc>().close();
+    super.dispose();
   }
 }

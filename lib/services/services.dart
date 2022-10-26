@@ -3,6 +3,8 @@ import 'package:test_api_app/models/sign_in_model.dart';
 import 'package:test_api_app/models/user_detail_model.dart';
 import 'package:test_api_app/models/users_model.dart';
 
+import '../utils/constants/urls.dart';
+
 class ApiService {
   ApiService() {
     _dio.interceptors.add(
@@ -21,13 +23,12 @@ class ApiService {
       ),
     );
   }
-  final Dio _dio = Dio();
 
-  final String _baseUrl = 'https://reqres.in/api/';
+  final Dio _dio = Dio();
 
   Future<UsersModel> fetchUsers() async {
     try {
-      final response = await _dio.get(_baseUrl + 'users');
+      final response = await _dio.get(Urls.baseUrl + Urls.users);
 
       return UsersModel.fromJson(response.data);
     } on DioError catch (_) {
@@ -37,7 +38,7 @@ class ApiService {
 
   Future<UserDetailModel> fetchUserDetail({required String id}) async {
     try {
-      final response = await _dio.get(_baseUrl + 'users/$id');
+      final response = await _dio.get('${Urls.baseUrl}${Urls.users}/$id');
 
       return UserDetailModel.fromJson(response.data);
     } catch (e) {
@@ -51,7 +52,7 @@ class ApiService {
   }) async {
     try {
       final response = await _dio.post(
-        _baseUrl + 'login',
+        Urls.baseUrl + Urls.login,
         data: {
           'email': email,
           'password': password,

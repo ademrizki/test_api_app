@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:test_api_app/provider/sign_in_provider.dart';
 import 'package:test_api_app/utils/state/finite_state.dart';
+import 'package:test_api_app/views/screens/home_screen.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
@@ -13,11 +14,12 @@ class SignInScreen extends StatefulWidget {
 class _SignInScreenState extends State<SignInScreen> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  final TextEditingController emailController = TextEditingController();
+  late final TextEditingController emailController;
   final TextEditingController passwordController = TextEditingController();
 
   @override
   void initState() {
+    emailController = TextEditingController();
     final provider = Provider.of<SignInProvider>(context, listen: false);
     provider.addListener(
       () {
@@ -36,6 +38,13 @@ class _SignInScreenState extends State<SignInScreen> {
                 'Logged In',
               ),
             ),
+          );
+          Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const HomeScreen(),
+            ),
+            (route) => false,
           );
         }
       },
@@ -115,13 +124,14 @@ class _SignInScreenState extends State<SignInScreen> {
                   }
                 },
                 child: Consumer<SignInProvider>(
-                  builder: (context, provider, _) {
+                  builder: (context, provider, circularProgressIndicator) {
                     if (provider.myState == MyState.loading) {
-                      return const CircularProgressIndicator();
+                      return circularProgressIndicator!;
                     } else {
                       return const Text('SIGN IN');
                     }
                   },
+                  child: const CircularProgressIndicator(),
                 ),
               ),
             ],

@@ -33,6 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Life is Worthless'),
+        backgroundColor: Colors.amber,
       ),
       body: Consumer<UserProvider>(
         builder: (context, provider, _) {

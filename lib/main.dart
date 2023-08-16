@@ -6,6 +6,8 @@ import 'package:test_api_app/views/screens/sign_in_screen.dart';
 
 void main() {
   runApp(const MyApp());
+
+  print("nama saya farhan");
 }
 
 class MyApp extends StatelessWidget {

@@ -16,6 +16,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
+print('Saya Jeriko')
+
     super.initState();
     Future.delayed(
       Duration.zero,

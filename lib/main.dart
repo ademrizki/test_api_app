@@ -8,6 +8,7 @@ void main() {
   runApp(const MyApp());
 
   print("nama saya farhan");
+  print('Hello World');
 }
 
 class MyApp extends StatelessWidget {

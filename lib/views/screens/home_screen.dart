@@ -32,6 +32,8 @@ print('Saya Jeriko')
 
   @override
   Widget build(BuildContext context) {
+    print('Ini Home Screen');
+    
     return Scaffold(
       appBar: AppBar(
         title: const Text('Life is Worthless'),
